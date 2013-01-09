@@ -32,8 +32,9 @@ get_app_vsn() ->
     lists:keyfind(AppName, 1, application:loaded_applications()).
 
 state_print(timeout, LoopData) ->
-    AppName = lists:nth(1, LoopData),
-    Vsn = lists:nth(2, LoopData),
+    %AppName = lists:nth(1, LoopData),
+    %Vsn = lists:nth(2, LoopData),
+    {AppName, Desc, Vsn} = get_app_vsn(),
     ?LOGGER("testserver for ~p-~p alive at ~p~n", [AppName, Vsn, erlang:now()]),
     {next_state, state_print, LoopData, ?WAIT_TIMEOUT}.
 
